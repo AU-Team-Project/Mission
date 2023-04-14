@@ -32,9 +32,17 @@ function Clear() {
     Updateresult()
 }
 
+function again() {
+    num2 = '';
+    ope = '';
+    result = '';
+}
+
 function Equalresult() {
     if(!isNaN(num2.charAt(num2.length-1))) {
         result = (new Function ('return '+result))();
         document.querySelector('.display').value = result;
+        num1 = result = (new Function('return ' + result))().toString();; 
+        again()
     }
 }
