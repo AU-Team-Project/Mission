@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 폼</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>회원가입</h1>
+    <form action="register.html" onsubmit="return checkdata()">
+    
+        <ul>
+            <li>
+                <label for="id" class="label"
+                    title="">아이디</label>
+                <input type="text" id="id" name="id" title="아이디를 입력하시오"
+                    placeholder="4자리 이상의 영문으로 만드세요.">
+            </li>
+            <li>
+                <label for="password1" class="label" title="비밀번호를 입력하세요">비밀번호</label>
+                <input type="password" id="password1" name="password1" placeholder="비밀번호를 입력하세요." 
+                    name="password1">
+                <input type="password" id="password2" name="password2" placeholder="비밀번호를 한번 더 입력하세요."
+                    title="비밀번호 재확인." name="password2">
+            </li>
+            <li>
+                <label for="" class="label" title="성명을 입력하세요">성명</label>
+                <input type="text" id="name1" name="name" placeholder="영문이름" title="영문이름을 기입하시오."
+                    placeholder="english name">
+                <input type="text" id="name2" name="name" placeholder="한글이름" title="한글이름을 기입하시오."
+                    placeholder="korean name">
+            </li>
+            <li>
+                <label for="" class="label" title="인턴여부를 체크해주세요">인턴여부</label>
+                <input type="radio" id="gender1" name="text" checked value="yes" title="확인">예
+                <input type="radio" id="gender2" name="text" value="no" title="불확인">아니요
+            </li>
+            <li>
+                <label for="" class="label" title="생년월일을 설정해주세요.">생년월일</label>
+                <input type="date" id="birth" name="birth" value="2020-01-01" title="생년월일 날짜 가입">
+            </li>
+            <li>
+                이메일<input type = "text" name = "e-mail" style="margin-left:20px"></label>
+                <select>
+                    <option value = "0">선택</option>
+                    <option value = "1">naver.com</option>
+                    <option value = "2">daum.net</option>
+                    <option value = "3">kakao.com</option>
+                </select>
+            </li>
+            <li>
+                <label for="" class="label" title="희망기업을 체크하십시오.">희망타입</label>
+                <input type="checkbox" id="hope1" name="hope" title="매매" checked> 매매
+                <input type="checkbox" id="hope2" name="hope" title="전세">전세
+                <input type="checkbox" id="hope3" name="hope" title="월세">월세
+            </li>
+            <li>
+                <label for="mobile" class="label" title="휴대폰 번호를 입력하시오.">휴대폰</label>
+                <select name="mobile1" id="">
+                    <option value="010" selected>010</option>
+                    <option value="011">011</option>
+                    <option value="016">016</option>
+                    <option value="017">017</option>
+                    <option value="018">018</option>
+                    <option value="019">019</option>
+                </select>
+                <input type="text" id="mobile2" name="mobile2" placeholder="" title="앞번호4자리">
+                <input type="text" id="mobile3" name="mobile3" placeholder="" title="뒷번호4자리">
+            </li>
+            <li>
+                <label></label>
+                <button type="submit" onclick=" return checkData()">가입</button>
+                <button type="reset">초기화</button>
+            </li>
+        </ul>
+    </form>
+</body>
+</html>
