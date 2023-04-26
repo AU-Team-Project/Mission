@@ -1,44 +1,39 @@
-function checkData() {
-    var id = document.getElementById("id").value;
-    var password1 = document.getElementById("password1").value;
-    var password2 = document.getElementById("password2").value;
-    var name1 = document.getElementById("name1").value;
-    var name2 = document.getElementById("name2").value;
-    var birth = document.getElementById("birth").value;
-    var email = document.getElementsByName("e-mail")[0].value;
-    var mobile2 = document.getElementById("mobile2").value;
-    var mobile3 = document.getElementById("mobile3").value;
-
-    if (id.length < 4) {
-        alert("아이디는 4자리 이상으로 입력하세요.");
-        return false;
+const movieList = document.querySelector('.movie-list');
+let html = '';
+fetch('https://janghwanpark.github.io/ajax-data-storage/json-data/product-data/movie-data.json')
+  .then(response => response.json())
+  .then(data => {
+    const movies = data.movies;
+    movies.forEach(movie => {
+      html += `
+        <div>
+          <h2>${movie.title}</h2>
+          <p>장르: ${movie.genre}</p>
+          <p>감독: ${movie.director}</p>
+          <p>개봉년도: ${movie.year}</p>
+          <p>평점: ${movie.rating}</p>
+          <p>DVD 가격: ${movie.product.DVD.price}원, 재고: ${movie.product.DVD.stock}개</p>
+          <p>Blu-ray 가격: ${movie.product['Blu-ray'].price}원, 재고: ${movie.product['Blu-ray'].stock}개</p>
+          <span>
+            <button class="add">담기</button>
+          </span>
+        </div>
+      `;
+    });
+    movieList.insertAdjacentHTML('afterend', html);
+  })
+  .catch(error => console.error(error));  //
+  function plus() {
+    let counts = document.getElementById("count");
+    counts.value = parseInt(counts.value) + 1;
+  }
+  function minus() {
+    let counts = document.getElementById("count");
+    if (counts.value > 0) {
+      counts.value = parseInt(counts.value) - 1;
     }
-
-    if (password1 !== password2) {
-        alert("비밀번호가 일치하지 않습니다.");
-        return false;
-    }
-
-    if (name1 === "" || name2 === "") {
-        alert("이름을 입력하세요.");
-        return false;
-    }
-
-    if (email === "" || email.indexOf("@") === -1) {
-        alert("이메일 주소를 확인하세요.");
-        return false;
-    }
-
-    if (mobile2 === "" || mobile2.length !== 4 || isNaN(mobile2)) {
-        alert("휴대폰 번호를 확인하세요.");
-        return false;
-    }
-
-    if (mobile3 === "" || mobile3.length !== 4 || isNaN(mobile3)) {
-        alert("휴대폰 번호를 확인하세요.");
-        return false;
-    }
-
-    alert("가입이 완료되었습니다.");
-    return true;
-}
+  }
+  function reset() {
+    let counts = document.getElementById("count");
+    counts.value = 0;
+  }
