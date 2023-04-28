@@ -79,7 +79,11 @@ body {
     font-size: 1rem;
     font-weight: 600;
   }
-  .plumi {
+  .plus {
+    background-color: #333333;
+    color: rgb(171, 200, 180);
+  }
+  .minus {
     background-color: #333333;
     color: rgb(171, 200, 180);
   }

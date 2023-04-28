@@ -9,6 +9,20 @@ function getMoviesData() {
           movies.forEach((movie, index) => {
               movie.id = index;
 
+              // movieList.insertAdjacentHTML('beforeend', `
+              //     <div class="movie-content">
+              //       <h2 class="title">${movie.title}</h2>
+              //       <p>장르: ${movie.genre}</p>
+              //       <p>감독: ${movie.director}</p>
+              //       <p>개봉년도: ${movie.year}</p>
+              //       <p>평점: ${movie.rating}</p>
+              //       <p>DVD : ${movie.product.DVD.price}원</p>
+              //       <p>재고: ${movie.product.DVD.stock}개</p>
+              //       <button class="add-cart" data-id="${movie.id}, ${Object.keys(movie.product)[0]}">
+              //         <span>담기</span>
+              //       </button>
+              //     </div>`
+              // );
               movieList.insertAdjacentHTML('beforeend', `
                   <div class="movie-content">
                     <h2 class="title">${movie.title}</h2>
@@ -23,7 +37,20 @@ function getMoviesData() {
                     </button>
                   </div>`
               );
-
+              // movieList.insertAdjacentHTML('beforeend', `
+              //     <div class="movie-content">
+              //       <h2 class="title">${movie.title}</h2>
+              //       <p>장르: ${movie.genre}</p>
+              //       <p>감독: ${movie.director}</p>
+              //       <p>개봉년도: ${movie.year}</p>
+              //       <p>평점: ${movie.rating}</p>
+              //       <p>Blu-ray 가격: ${movie.product['Blu-ray'].price}원</p>
+              //       <p>재고: ${movie.product['Blu-ray'].stock}개</p>
+              //       <button class="add-cart" data-id="${movie.id}, ${Object.keys(movie.product)[1]}"> 
+              //         <span>담기</span> 
+              //       </button>
+              //     </div>`
+              // );
               movieList.insertAdjacentHTML('beforeend', `
                   <div class="movie-content">
                     <h2 class="title">${movie.title}</h2>
@@ -64,46 +91,66 @@ function createElement(selectMovie) {
               <p>재고: ${selectMovie.stock}</p>
               <b class="count">수량</b>
               <b class="amount">1</b>
-              <button button class="plumi" onclick="amountIncrease()">
+              <button class="plus">
                 <span>+</span>
               </button>
-              <button button class="plumi">
+              <button class="minus">
                 <span>-</span>
               </button>
-              <button button class="delete" onclick="remove()">
+              <button class="delete">
                 <span>삭제</span>
               </button>
           </div>`;
+          
+          
 }
+const getBtn = document.querySelectorAll('.add-cart');
+getBtn.forEach(getProduct => {
+  getProduct.addEventListener('click', (e) => add(e, movies));
+});
 
+//movies값 받아서 비교후 createElement 함수실행
 const movieCart = document.querySelector('.cart');
 
 function add(e, movies) {
   const movieID = e.target.closest('.add-cart').dataset.id;
-  const selectMovie = movies.find(movie => movie.id == movieID);
+  // const moviePRODUCT = e.target.closest('.add-cart').dataset.product;
+  // const selectMovie = movies.find(movie => (movie.id == movieID) && (movie.product == moviePRODUCT));
+  const selectMovie = movies.find(movie => movie.id == movieID)
   
   selectMovie ? movieCart.insertAdjacentHTML('beforeend', createElement(selectMovie)) : alert("장바구니가 비어있습니다.");
 }
 
+
 // 수량 증가,감소 (쿼리셀렉터에서 .amount를 찾을 수 없음 2순위 수정)
 let amount = 1;
-const amountdisplay = document.querySelector('.amount');
 
-function amountDetect() {
-  amountdisplay.textContent(amount)
-  return amountdisplay;
+function getAmountBtn() {
+  const plusBtn = document.querySelectorAll('.plus');
+  const minusBtn = document.querySelectorAll('.minus');
+  const getAmount = document.querySelector('.amount');
+
 }
-function amountDescrease() {
-  amount--
-  if (amount < 1) {
-    amount = 1;
-  }
-  amountDetect();
-}
-function amountIncrease() {
-  amount++
-  amountDetect();
-}
+
+
+
+
+
+// function amountDetect() {
+//   amountdisplay.textContent(amount)
+//   return amountdisplay;
+// }
+// function amountDescrease() {
+//   amount--
+//   if (amount < 1) {
+//     amount = 1;
+//   }
+//   amountDetect();
+// }
+// function amountIncrease() {
+//   amount++
+//   amountDetect();
+// }
 
 // function add(e, movies) {
 //   const movieContent = e.target.closest('.movie-content');
