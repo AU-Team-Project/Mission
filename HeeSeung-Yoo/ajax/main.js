@@ -60,6 +60,19 @@ function createElement(selectMovie) {
               <p>감독: ${selectMovie.director}</p>
               <p>개봉년도: ${selectMovie.year}</p>
               <p>제품: ${selectMovie.product}</p>
+              <p>가격: ${selectMovie.price}</p>
+              <p>재고: ${selectMovie.stock}</p>
+              <b>수량</b>
+              <b class="amount">1</b>
+              <button button class="plumi" onclick="amountIncrease()">
+                <span>+</span>
+              </button>
+              <button button class="plumi">
+                <span>-</span>
+              </button>
+              <button button class="delete">
+                <span>삭제</span>
+              </button>
           </div>`;
 }
 
@@ -76,6 +89,25 @@ function init() {
 }
 init();
 
+// 수량 증가,감소 (쿼리셀렉터에서 .amount를 찾을 수 없음 2순위 수정)
+let amount = 1;
+const amountdisplay = document.querySelector('.amount');
+
+function amountDetect() {
+  amountdisplay.textContent(amount)
+  return amountdisplay;
+}
+function amountDescrease() {
+  amount--
+  if (amount < 1) {
+    amount = 1;
+  }
+  amountDetect();
+}
+function amountIncrease() {
+  amount++
+  amountDetect();
+}
 // function add(e, movies) {
 //   const movieContent = e.target.closest('.movie-content');
 //   const movieTitle = movieContent.querySelector('h2').textContent;
@@ -97,21 +129,4 @@ init();
 //   );
 // }
 
-// 수량 증가,감소 (쿼리셀렉터에서 .amount를 찾을 수 없음 2순위 수정)
-let amount = 1;
-const amountdisplay = document.querySelector('.amount');
 
-function amountDetect() {
-  amountdisplay.insertAdjacentText('beforeend', amount)
-}
-function amountDescrease() {
-  amount--
-  if (amount < 1) {
-    amount = 1;
-  }
-  amountDetect();
-}
-function amountIncrease() {
-  amount++
-  amountDetect();
-}
