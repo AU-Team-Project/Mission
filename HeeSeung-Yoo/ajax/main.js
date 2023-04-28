@@ -62,7 +62,7 @@ function createElement(selectMovie) {
               <p>제품: ${selectMovie.product}</p>
               <p>가격: ${selectMovie.price}</p>
               <p>재고: ${selectMovie.stock}</p>
-              <b>수량</b>
+              <b class="count">수량</b>
               <b class="amount">1</b>
               <button button class="plumi" onclick="amountIncrease()">
                 <span>+</span>
