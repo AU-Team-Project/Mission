@@ -68,14 +68,20 @@ function createElement(selectMovie) {
 }
 
 
-// get Item
+/**
+ * @param e = Event
+ * @param movies = Products Data
+ **/
 function getItemBasket(e, movies) {
     const movieID = e.target.closest('.getItem').dataset.id;
     const selectMovie = movies.find(movie => movie.id = movieID);
     const movieCart = document.querySelector('.cart');
 
-    // Storage
-    localStorage.setItem("movies", JSON.stringify(movies));
+    // LocalStorage Data Set
+    localStorage.setItem("Local Title", JSON.stringify(selectMovie.title));
+
+    // SessionStorage Data Set
+    sessionStorage.setItem("Session Title", JSON.stringify(selectMovie.id));
 
     // outPut
     selectMovie ? movieCart.insertAdjacentHTML('beforeend', createElement(selectMovie)) : alert("장바구니가 비어있습니다.");
