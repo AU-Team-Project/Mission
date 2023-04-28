@@ -4,4 +4,3 @@ window.initMap = function () {
     zoom: 15
   });
 };
-//커밋

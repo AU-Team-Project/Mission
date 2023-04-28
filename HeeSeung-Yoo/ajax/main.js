@@ -70,24 +70,20 @@ function createElement(selectMovie) {
               <button button class="plumi">
                 <span>-</span>
               </button>
-              <button button class="delete">
+              <button button class="delete" onclick="remove()">
                 <span>삭제</span>
               </button>
           </div>`;
 }
 
+const movieCart = document.querySelector('.cart');
+
 function add(e, movies) {
   const movieID = e.target.closest('.add-cart').dataset.id;
   const selectMovie = movies.find(movie => movie.id == movieID);
-  const movieCart = document.querySelector('.cart');
   
   selectMovie ? movieCart.insertAdjacentHTML('beforeend', createElement(selectMovie)) : alert("장바구니가 비어있습니다.");
 }
-
-function init() {
-  getMoviesData();
-}
-init();
 
 // 수량 증가,감소 (쿼리셀렉터에서 .amount를 찾을 수 없음 2순위 수정)
 let amount = 1;
@@ -108,6 +104,7 @@ function amountIncrease() {
   amount++
   amountDetect();
 }
+
 // function add(e, movies) {
 //   const movieContent = e.target.closest('.movie-content');
 //   const movieTitle = movieContent.querySelector('h2').textContent;
@@ -129,4 +126,7 @@ function amountIncrease() {
 //   );
 // }
 
-
+function init() {
+  getMoviesData();
+}
+init();
