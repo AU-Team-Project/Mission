@@ -50,18 +50,9 @@ function getMoviesData() {
           console.error(error)
       });
 }
-function createElement(selectMovie, selectDVD, selectBlu) {
-  const plusBtn = document.querySelectorAll('.plus')
-  const minusBtn = document.querySelectorAll('.minus')
-  const Amount = document.querySelector('.amount');
-  let amountValue = 1;
-  plusBtn.forEach(plusProduct => {
-    plusProduct.addEventListener('click', (e) => amountCalculcate(e, Amount));
-  });
-  minusBtn.forEach(minusProduct => {
-    minusProduct.addEventListener('click', (e) => amountCalculcate(e, Amount));
-  });
 
+function createElement(selectMovie, selectDVD, selectBlu) {
+  
   if(selectMovie && selectBlu) {
     movieCart.insertAdjacentHTML('beforeend', `
     <div class="cart-item">
@@ -108,6 +99,9 @@ function createElement(selectMovie, selectDVD, selectBlu) {
     </div>`);
   }else
   alert("장바구니가 비어있습니다.");
+    
+  calldeleteBtn()
+
 }
 
 const movieCart = document.querySelector('.cart');
@@ -119,30 +113,20 @@ function add(e, movies) {
   const selectBlu = movies.find(movie => movie.product['Blu-ray'].price == productID);
   const selectDVD = movies.find(movie => movie.product['DVD'].price == productID);
   
-  createElement(selectMovie, selectBlu, selectDVD);
   
-
+  createElement(selectMovie, selectBlu, selectDVD);
 }
 
-// 수량 증가,감소 (쿼리셀렉터에서 .amount를 찾을 수 없음 2순위 수정)
-let amountValue = 1;
-
-function amountCalculcate(e, Amount) {
-  const f = e.target.closest('.amount').value;
-  Amount.textContent = amountValue
-  return Amount;
+function calldeleteBtn() {
+  const delBtns = document.querySelectorAll('.delete');
+  delBtns.forEach(delBtn => {
+    delBtn.addEventListener('click', deleteElement);
+  });
 }
 
-function amountDescrease() {
-  amountValue--
-  if (amountValue < 1) {
-    amountValue = 1;
-  }
-  amountDetect();
-}
-function amountIncrease() {
-  amountValue++
-  amountDetect();
+function deleteElement(e) {
+  const cartItem = e.target.closest('.cart-item');
+  cartItem.parentNode.removeChild(cartItem);
 }
 
 //JSON파일 불러오기
