@@ -17,7 +17,7 @@ function getMoviesData() {
                     <p>평점: ${movie.rating}</p>
                     <p>DVD : ${movie.product.DVD.price}원</p>
                     <p>재고: ${movie.product.DVD.stock}개</p>
-                    <button class="add-cart" data-id="${movie.id}">
+                    <button class="add-cart" data-id="${movie.id}" data-price="${movie.product.DVD.price}">
                       <span>담기</span>
                     </button>
                   </div>`
@@ -51,7 +51,31 @@ function getMoviesData() {
       });
 }
 
-  function createElement(selectMovie) {
+function createElementDVD(selectMovie) {
+  return `
+          <div class="cart-item">
+              <h3 class="title">${selectMovie.title}</h3>
+              <p>장르: ${selectMovie.genre}</p>
+              <p>감독: ${selectMovie.director}</p>
+              <p>개봉년도: ${selectMovie.year}</p>
+              <p>제품: DVD</p>
+              <p>가격: ${selectMovie.product.DVD.price}</p>
+              <p>재고: ${selectMovie.product.DVD.stock}</p>
+              <b class="count">수량</b>
+              <b class="amount">1</b>
+              <button button class="plumi" onclick="amountIncrease()">
+                <span>+</span>
+              </button>
+              <button button class="plumi">
+                <span>-</span>
+              </button>
+              <button button class="delete" onclick="remove()">
+                <span>삭제</span>
+              </button>
+          </div>`;
+}
+
+  function createElementBluray(selectMovie) {
       return `
               <div class="cart-item">
                   <h3 class="title">${selectMovie.title}</h3>
@@ -87,8 +111,22 @@ function add(e, movies) {
   const productID = e.target.closest('.add-cart').dataset.price;
   const selectMovie = movies.find(movie => movie.id == movieID);
   const selectBlu = movies.find(movie => movie.product['Blu-ray'].price == productID);
+  const selectDVD = movies.find(movie => movie.product['DVD'].price == productID);
   
-  selectMovie && selectBlu ? movieCart.insertAdjacentHTML('beforeend', createElement(selectMovie)) : alert("장바구니가 비어있습니다.");
+  if (selectMovie && selectBlu)
+  {
+    movieCart.insertAdjacentHTML('beforeend', createElementBluray(selectMovie));
+  }
+  else if (selectMovie && selectDVD )
+  {
+    movieCart.insertAdjacentHTML('beforeend', createElementDVD(selectMovie));
+  }
+  else
+  {
+    alert("장바구니가 비어있습니다.");
+  }
+  // selectMovie && selectBlu ? movieCart.insertAdjacentHTML('beforeend', createElementBluray(selectMovie)) : alert("장바구니가 비어있습니다.");
+  // selectMovie && selectDVD ? movieCart.insertAdjacentHTML('beforeend', createElementDVD(selectMovie)) : alert("장바구니가 비어있습니다.");
 }
 
 // 수량 증가,감소 (쿼리셀렉터에서 .amount를 찾을 수 없음 2순위 수정)
