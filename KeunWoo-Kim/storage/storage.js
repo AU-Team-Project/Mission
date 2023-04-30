@@ -241,13 +241,9 @@ function validateStorageData() {
   return isValid;
 }
 
-// 페이지 로드 시 실행
-getProductData();
-
 
 //JSON파일 불러오기
 function init() {
   getMoviesData();
-  sessionStorage.clear();
 }
 init();
