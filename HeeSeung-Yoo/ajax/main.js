@@ -146,6 +146,7 @@ function amountIncrease(e) {
   amountValue = parseInt(Amount.textContent);
   amountValue++;
   Amount.textContent = amountValue;
+
 }
 
 function callamountDecrease() {
