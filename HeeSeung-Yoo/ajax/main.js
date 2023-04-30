@@ -1,5 +1,5 @@
 const movieList = document.querySelector('.movie-list');
-
+// JSON불러와서 HTML에 적용시키기
 function getMoviesData() {
   fetch('https://janghwanpark.github.io/ajax-data-storage/json-data/product-data/movie-data.json')
       .then(response => response.json())
@@ -101,6 +101,8 @@ function createElement(selectMovie, selectDVD, selectBlu) {
   alert("장바구니가 비어있습니다.");
     
   calldeleteBtn()
+  callamountIncrease()
+  callamountDecrease()
 
 }
 
@@ -116,7 +118,7 @@ function add(e, movies) {
   
   createElement(selectMovie, selectBlu, selectDVD);
 }
-
+//장바구니에 담은 거 삭제하기
 function calldeleteBtn() {
   const delBtns = document.querySelectorAll('.delete');
   delBtns.forEach(delBtn => {
@@ -127,6 +129,39 @@ function calldeleteBtn() {
 function deleteElement(e) {
   const cartItem = e.target.closest('.cart-item');
   cartItem.parentNode.removeChild(cartItem);
+}
+
+//장바구니에 담긴거 수량 증가,감소
+let amountValue = 1;
+
+function callamountIncrease() {
+  const plusBtns = document.querySelectorAll('.plus');
+  plusBtns.forEach(plusBtn => {
+    plusBtn.addEventListener('click', amountIncrease);
+  });
+}
+
+function amountIncrease(e) {
+  const Amount = e.target.closest('.cart-item').querySelector('.amount');
+  amountValue = parseInt(Amount.textContent);
+  amountValue++;
+  Amount.textContent = amountValue;
+}
+
+function callamountDecrease() {
+  const minusBtns = document.querySelectorAll('.minus');
+  minusBtns.forEach(minusBtn => {
+    minusBtn.addEventListener('click', amountDecrease);
+  });
+}
+
+function amountDecrease(e) {
+  const Amount = e.target.closest('.cart-item').querySelector('.amount');
+  amountValue = parseInt(Amount.textContent);
+  if (amountValue > 1) {
+    amountValue--;
+    Amount.textContent = amountValue;
+  }
 }
 
 //JSON파일 불러오기
