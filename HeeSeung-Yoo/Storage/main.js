@@ -51,18 +51,18 @@ function getMoviesData() {
       });
 }
 
-function createElement(selectMovie, selectDVD, selectBlu) {
+function createElement(selectMovieBlu, selectMovieDVD) {
   
-  if(selectMovie && selectBlu) {
+  if(selectMovieDVD) {
     movieCart.insertAdjacentHTML('beforeend', `
     <div class="cart-item">
-        <h3 class="title">${selectMovie.title}</h3>
-        <p>장르: ${selectMovie.genre}</p>
-        <p>감독: ${selectMovie.director}</p>
-        <p>개봉년도: ${selectMovie.year}</p>
-        <p>제품: ${Object.keys(selectMovie.product)[0]}</p>
-        <p>가격: ${selectMovie.product.DVD.price}</p>
-        <p>재고: ${selectMovie.product.DVD.stock}</p>
+        <h3 class="title">${selectMovieDVD.title}</h3>
+        <p>장르: ${selectMovieDVD.genre}</p>
+        <p>감독: ${selectMovieDVD.director}</p>
+        <p>개봉년도: ${selectMovieDVD.year}</p>
+        <p>제품: ${Object.keys(selectMovieDVD.product)[0]}</p>
+        <p>가격: ${selectMovieDVD.product.DVD.price}</p>
+        <p>재고: ${selectMovieDVD.product.DVD.stock}</p>
         <b class="count">수량</b>
         <b class="amount">1</b>
         <button class="plus">
@@ -75,16 +75,16 @@ function createElement(selectMovie, selectDVD, selectBlu) {
           <span>삭제</span>
         </button>
     </div>`);
-  }else if(selectMovie && selectDVD) {
+  }else if(selectMovieBlu) {
     movieCart.insertAdjacentHTML('beforeend', `
     <div class="cart-item">
-        <h3 class="title">${selectMovie.title}</h3>
-        <p>장르: ${selectMovie.genre}</p>
-        <p>감독: ${selectMovie.director}</p>
-        <p>개봉년도: ${selectMovie.year}</p>
-        <p>제품: ${Object.keys(selectMovie.product)[1]}</p>
-        <p>가격: ${selectMovie.product['Blu-ray'].price}</p>
-        <p>재고: ${selectMovie.product['Blu-ray'].stock}</p>
+        <h3 class="title">${selectMovieBlu.title}</h3>
+        <p>장르: ${selectMovieBlu.genre}</p>
+        <p>감독: ${selectMovieBlu.director}</p>
+        <p>개봉년도: ${selectMovieBlu.year}</p>
+        <p>제품: ${Object.keys(selectMovieBlu.product)[1]}</p>
+        <p>가격: ${selectMovieBlu.product['Blu-ray'].price}</p>
+        <p>재고: ${selectMovieBlu.product['Blu-ray'].stock}</p>
         <b class="count">수량</b>
         <b class="amount">1</b>
         <button class="plus">
@@ -113,44 +113,18 @@ const movieCart = document.querySelector('.cart');
 function add(e, movies) {
   const movieID = e.target.closest('.add-cart').dataset.id;
   const productID = e.target.closest('.add-cart').dataset.price;
-  const selectMovie = movies.find(movie => movie.id == movieID);
-  const selectBlu = movies.find(movie => movie.product['Blu-ray'].price == productID);
-  const selectDVD = movies.find(movie => movie.product['DVD'].price == productID);
+  const selectMovieBlu = movies.find(movie => movie.id == movieID && movie.product['Blu-ray'].price == productID);
+  const selectMovieDVD = movies.find(movie => movie.id == movieID && movie.product['DVD'].price == productID);
  
-  localStorage.setItem("title", JSON.stringify(selectMovie.title));
-  localStorage.setItem("genre", JSON.stringify(selectMovie.genre));
-  localStorage.setItem("director", JSON.stringify(selectMovie.director));
-  localStorage.setItem("year", JSON.stringify(selectMovie.year));
-  if(selectMovie && selectBlu) {
-    localStorage.setItem("product", JSON.stringify(Object.keys(selectMovie.product)[1]));
-    localStorage.setItem("price", JSON.stringify(selectMovie.product['Blu-ray'].price));
-    localStorage.setItem("stock", JSON.stringify(selectMovie.product['Blu-ray'].stock));
-  }else if(selectMovie && selectDVD) {
-    localStorage.setItem("product", JSON.stringify(Object.keys(selectMovie.product)[0]));
-    localStorage.setItem("price", JSON.stringify(selectMovie.product.DVD.price));
-    localStorage.setItem("stock", JSON.stringify(selectMovie.product.DVD.stock));
-  } 
-  localStorage.setItem("amount", JSON.stringify(amountValue));
+  localStorage.setItem("BluRay", JSON.stringify(selectMovieBlu));
+  localStorage.setItem("DVD", JSON.stringify(selectMovieDVD));
+  sessionStorage.setItem("all", JSON.stringify(movies));
   
-
-  // SessionStorage Data Set
-  sessionStorage.setItem("title", JSON.stringify(selectMovie.title));
-  sessionStorage.setItem("genre", JSON.stringify(selectMovie.genre));
-  sessionStorage.setItem("director", JSON.stringify(selectMovie.director));
-  sessionStorage.setItem("year", JSON.stringify(selectMovie.year));
-  if(selectMovie && selectBlu) {
-    sessionStorage.setItem("product", JSON.stringify(selectMovie.product['Blu-ray']));
-    sessionStorage.setItem("price", JSON.stringify(selectMovie.product['Blu-ray'].price));
-    sessionStorage.setItem("stock", JSON.stringify(selectMovie.product['Blu-ray'].stock));
-  }else if(selectMovie && selectDVD) {
-    sessionStorage.setItem("product", JSON.stringify(Object.keys(selectMovie.product)));
-    sessionStorage.setItem("price", JSON.stringify(selectMovie.product.DVD.price));
-    sessionStorage.setItem("stock", JSON.stringify(selectMovie.product.DVD.stock));
-  } 
-  sessionStorage.setItem("amount", JSON.stringify(amountValue));
   
-  createElement(selectMovie, selectBlu, selectDVD);
+  createElement(selectMovieBlu, selectMovieDVD);
 }
+
+
 //장바구니에 담은 거 삭제하기
 function calldeleteBtn() {
   const delBtns = document.querySelectorAll('.delete');
@@ -162,23 +136,10 @@ function calldeleteBtn() {
 function deleteElement(e) {
   const cartItem = e.target.closest('.cart-item');
   cartItem.parentNode.removeChild(cartItem);
-  localStorage.removeItem("title");
-  localStorage.removeItem("genre");
-  localStorage.removeItem("director");
-  localStorage.removeItem("year");
-  localStorage.removeItem("product");
-  localStorage.removeItem("price");
-  localStorage.removeItem("stock");
-  localStorage.removeItem("amount");
+  localStorage.removeItem(1)
+  localStorage.removeItem(2)
+  sessionStorage.removeItem(1)
   
-  sessionStorage.removeItem("title");
-  sessionStorage.removeItem("genre");
-  sessionStorage.removeItem("director");
-  sessionStorage.removeItem("year");
-  sessionStorage.removeItem("product");
-  sessionStorage.removeItem("price");
-  sessionStorage.removeItem("stock");
-  sessionStorage.removeItem("amount");
 }
 
 //장바구니에 담긴거 수량 증가,감소
@@ -196,8 +157,7 @@ function amountIncrease(e) {
   amountValue = parseInt(Amount.textContent);
   amountValue++;
   Amount.textContent = amountValue;
-  localStorage.setItem("amount", JSON.stringify(amountValue));
-  sessionStorage.setItem("amount", JSON.stringify(amountValue));
+  
 }
 
 function callamountDecrease() {
@@ -213,8 +173,7 @@ function amountDecrease(e) {
   if (amountValue > 1) {
     amountValue--;
     Amount.textContent = amountValue;
-    localStorage.setItem("amount", JSON.stringify(amountValue));
-    sessionStorage.setItem("amount", JSON.stringify(amountValue));
+    
   }
 }
 
