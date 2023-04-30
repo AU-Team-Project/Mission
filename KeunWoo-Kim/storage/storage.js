@@ -44,18 +44,12 @@ function getProductData() {
     });
 }
 
-// 로컬스토리지에 데이터 저장
-cartData.local.push(productData);
-localStorage.setItem('cartData', JSON.stringify(cartData));
-
-  // 세션스토리지에 데이터 저장
-  cartData.session.push(productData);
-  sessionStorage.setItem('cartData', JSON.stringify(cartData));
 
 
-// 장바구니 데이터 삭제
+// 제거하려는 데이터 항목의 키인 단일 인수를 가져와 해당 도메인의 저장소 개체에서 제거합니다.
 function clearCart() {
-    localStorage.removeItem('cartItems');
+  localStorage.removeItem('cartItems');
+  sessionStorage.removeItem('lastAddedMovie');
 }
 
 // 로컬 스토리지와 세션 스토리지에 저장된 데이터 유효성 검사
