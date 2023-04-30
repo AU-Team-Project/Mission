@@ -221,6 +221,5 @@ function amountDecrease(e) {
 //JSON파일 불러오기
 function init() {
   getMoviesData();
-  sessionStorage.clear();
 }
 init();
