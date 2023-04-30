@@ -60,7 +60,7 @@ function createElement(selectMovie, selectDVD, selectBlu) {
         <p>장르: ${selectMovie.genre}</p>
         <p>감독: ${selectMovie.director}</p>
         <p>개봉년도: ${selectMovie.year}</p>
-        <p>제품: DVD</p>
+        <p>제품: ${Object.keys(selectMovie.product)[0]}</p>
         <p>가격: ${selectMovie.product.DVD.price}</p>
         <p>재고: ${selectMovie.product.DVD.stock}</p>
         <b class="count">수량</b>
@@ -82,7 +82,7 @@ function createElement(selectMovie, selectDVD, selectBlu) {
         <p>장르: ${selectMovie.genre}</p>
         <p>감독: ${selectMovie.director}</p>
         <p>개봉년도: ${selectMovie.year}</p>
-        <p>제품: Blu-ray</p>
+        <p>제품: ${Object.keys(selectMovie.product)[1]}</p>
         <p>가격: ${selectMovie.product['Blu-ray'].price}</p>
         <p>재고: ${selectMovie.product['Blu-ray'].stock}</p>
         <b class="count">수량</b>
@@ -101,17 +101,8 @@ function createElement(selectMovie, selectDVD, selectBlu) {
   alert("장바구니가 비어있습니다.");
     
   calldeleteBtn()
-  callamountIncrease()
-  callamountDecrease()
-  // LocalStorage Data Set
-    if(selectMovie && selectBlu) {
-      localStorage.setItem(1, JSON.stringify(selectMovie.product['Blu-ray']));
-    }else if(selectMovie && selectDVD){
-      localStorage.setItem(1, JSON.stringify(selectMovie.product.DVD));
-    }
-    
-    // SessionStorage Data Set
-    sessionStorage.setItem(1, JSON.stringify(selectMovie.id));
+  callamountIncrease();
+  callamountDecrease();
 }
 
 const movieCart = document.querySelector('.cart');
@@ -126,7 +117,37 @@ function add(e, movies) {
   const selectBlu = movies.find(movie => movie.product['Blu-ray'].price == productID);
   const selectDVD = movies.find(movie => movie.product['DVD'].price == productID);
  
+  localStorage.setItem("title", JSON.stringify(selectMovie.title));
+  localStorage.setItem("genre", JSON.stringify(selectMovie.genre));
+  localStorage.setItem("director", JSON.stringify(selectMovie.director));
+  localStorage.setItem("year", JSON.stringify(selectMovie.year));
+  if(selectMovie && selectBlu) {
+    localStorage.setItem("product", JSON.stringify(Object.keys(selectMovie.product)[1]));
+    localStorage.setItem("price", JSON.stringify(selectMovie.product['Blu-ray'].price));
+    localStorage.setItem("stock", JSON.stringify(selectMovie.product['Blu-ray'].stock));
+  }else if(selectMovie && selectDVD) {
+    localStorage.setItem("product", JSON.stringify(Object.keys(selectMovie.product)[0]));
+    localStorage.setItem("price", JSON.stringify(selectMovie.product.DVD.price));
+    localStorage.setItem("stock", JSON.stringify(selectMovie.product.DVD.stock));
+  } 
+  localStorage.setItem("amount", JSON.stringify(amountValue));
   
+
+  // SessionStorage Data Set
+  sessionStorage.setItem("title", JSON.stringify(selectMovie.title));
+  sessionStorage.setItem("genre", JSON.stringify(selectMovie.genre));
+  sessionStorage.setItem("director", JSON.stringify(selectMovie.director));
+  sessionStorage.setItem("year", JSON.stringify(selectMovie.year));
+  if(selectMovie && selectBlu) {
+    sessionStorage.setItem("product", JSON.stringify(selectMovie.product['Blu-ray']));
+    sessionStorage.setItem("price", JSON.stringify(selectMovie.product['Blu-ray'].price));
+    sessionStorage.setItem("stock", JSON.stringify(selectMovie.product['Blu-ray'].stock));
+  }else if(selectMovie && selectDVD) {
+    sessionStorage.setItem("product", JSON.stringify(Object.keys(selectMovie.product)));
+    sessionStorage.setItem("price", JSON.stringify(selectMovie.product.DVD.price));
+    sessionStorage.setItem("stock", JSON.stringify(selectMovie.product.DVD.stock));
+  } 
+  sessionStorage.setItem("amount", JSON.stringify(amountValue));
   
   createElement(selectMovie, selectBlu, selectDVD);
 }
@@ -141,6 +162,23 @@ function calldeleteBtn() {
 function deleteElement(e) {
   const cartItem = e.target.closest('.cart-item');
   cartItem.parentNode.removeChild(cartItem);
+  localStorage.removeItem("title");
+  localStorage.removeItem("genre");
+  localStorage.removeItem("director");
+  localStorage.removeItem("year");
+  localStorage.removeItem("product");
+  localStorage.removeItem("price");
+  localStorage.removeItem("stock");
+  localStorage.removeItem("amount");
+  
+  sessionStorage.removeItem("title");
+  sessionStorage.removeItem("genre");
+  sessionStorage.removeItem("director");
+  sessionStorage.removeItem("year");
+  sessionStorage.removeItem("product");
+  sessionStorage.removeItem("price");
+  sessionStorage.removeItem("stock");
+  sessionStorage.removeItem("amount");
 }
 
 //장바구니에 담긴거 수량 증가,감소
@@ -158,7 +196,8 @@ function amountIncrease(e) {
   amountValue = parseInt(Amount.textContent);
   amountValue++;
   Amount.textContent = amountValue;
-
+  localStorage.setItem("amount", JSON.stringify(amountValue));
+  sessionStorage.setItem("amount", JSON.stringify(amountValue));
 }
 
 function callamountDecrease() {
@@ -174,6 +213,8 @@ function amountDecrease(e) {
   if (amountValue > 1) {
     amountValue--;
     Amount.textContent = amountValue;
+    localStorage.setItem("amount", JSON.stringify(amountValue));
+    sessionStorage.setItem("amount", JSON.stringify(amountValue));
   }
 }
 
