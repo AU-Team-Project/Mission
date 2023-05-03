@@ -42,7 +42,7 @@ th, td {
     background-color: rgb(92, 167, 121);
 }
 .pop {
-    display: block;
+    display: none;
     background-color: rgb(25, 100, 54);
     width: 300px;
     height: 300px;
