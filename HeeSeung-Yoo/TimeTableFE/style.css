@@ -1,49 +1,93 @@
-body {
-    background-color: rgb(29, 131, 21);
-}
-ul {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(8, 100px);
-    grid-template-rows: repeat(11, 60px);
-    justify-content: center;
-    align-content: center;
-}
-.week {
-    border: 2px solid black;
+h1 {
     text-align: center;
-    background-color: rgb(42, 165, 89);
-    color: rgb(255, 255, 255);
-    height: 40px;
-    align-self: end;
 }
-.clock {
-    border: 2px solid black;
+table {
+    width: 700px;
+    border: 1px solid black;
+    border-collapse: collapse;
     text-align: center;
-    background-color: rgb(42, 165, 89);
-    color: rgb(255, 255, 255);
-    width: 40px;
-    justify-self: end;
-    
+    margin: auto;
 }
-.space {
-    border: 2px solid black;
+th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
     text-align: center;
+    width : 100px;
+    height: 70px;
+    color: white;
     background-color: rgb(81, 169, 115);
+    text-align: center;
 }
-.empty {
-    border: 2px solid black;
+.hour {
+    width: 5%;
+    background-color:  rgb(42, 165, 89);
+}
+.week, .empty{
+    height: 5%;
     background-color: rgb(42, 165, 89);
-    height: 40px;
-    width: 40px;
-    justify-self: end;
-    align-self: end;
 }
 .add-schedule {
+    background-color:transparent;
     width: 100%;
     height: 100%;
-    background-color: rgb(42, 165, 89);
+    border: none;
+    color: white;
+    font-size: 25px;
+    cursor:pointer;
 }
-.add-schedule > span {
-    color: rgb(255, 255, 255);
+.add-schedule:hover {
+    background-color:rgb(26, 120, 62);
+}  
+.add-schedule:active {
+    background-color: rgb(92, 167, 121);
+}
+.pop {
+    display: none;
+    background-color: rgb(25, 100, 54);
+    width: 300px;
+    height: 300px;
+    color: white;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid black;
+    border-radius: 10px;
+}
+.pop > h2 {
+    text-align: center;
+}
+.pop > span {
+    display: inline-block;
+    text-align: left;
+}
+.pop > span > b, select {
+    margin-top: 7px;
+}
+.add {
+    background-color: black;
+    color: white;
+    margin-top: 20px;
+    width: 50px;
+    height: 25px;
+}
+.add:hover {
+    background-color:rgb(35, 35, 35);
+}  
+.add:active {
+    background-color: rgb(63, 63, 63);
+}
+.close {
+    background-color: black;
+    color: white;
+    margin-top: 50px;
+    width: 150px;
+    height: 45px;
+}
+.close:hover {
+    background-color:rgb(35, 35, 35);
+}  
+.close:active {
+    background-color: rgb(63, 63, 63);
 }

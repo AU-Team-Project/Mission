@@ -1,110 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>시간표</title>
+    <title>TimeTable</title>
 </head>
 <link rel="stylesheet" href="style.css">
 <body>
-    <div class="container">
-        <div class="table">
-            <ul>
-                <li class="empty">
-                    <button type="button"class="add-schedule">
-                        <span>+</span>
-                    </button>
-                </li>
-                <li class="week">일</li>
-                <li class="week">월</li>
-                <li class="week">화</li>
-                <li class="week">수</li>
-                <li class="week">목</li>
-                <li class="week">금</li>
-                <li class="week">토</li>
-                <li class="clock">9</li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="clock">10</li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="clock">11</li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="clock">12</li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="clock">1</li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="clock">2</li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="clock">3</li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="clock">4</li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="clock">5</li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="clock">6</li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-                <li class="space"></li>
-            </ul>
+    <h1> TimeTable </h1>
+    <table id="tableId">
+        <thead>
+            <tr class="weekline">
+                <th class="empty"><button type="button" class="add-schedule">+</button></th>
+                <th class="week">월</th>
+                <th class="week">화</th>
+                <th class="week">수</th>
+                <th class="week">목</th>
+                <th class="week">금</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th class="hour">9</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="hour">10</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="hour">11</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="hour">12</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="hour">1</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="hour">2</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="hour">3</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <th class="hour">4</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="pop-add">
+        <div class="pop">
+            <h2>시간표 추가</h2>
+            <span>
+                <b>요일</b>
+                <select name="week" id="selectweek">
+                    <option value="mon">월</option>
+                    <option value="tue">화</option>
+                    <option value="wed">수</option>
+                    <option value="thu">목</option>
+                    <option value="fri">금</option>
+                </select>
+                <br>
+                <b>시간</b>
+                <select name="time" id="selecttime">
+                    <option value="09">09AM- 10AM</option>
+                    <option value="10">10AM - 11AM</option>
+                    <option value="11">11AM - 12PM</option>
+                    <option value="12">12PM - 01PM</option>
+                    <option value="01">01PM - 02PM</option>
+                    <option value="02">02PM - 03PM</option>
+                    <option value="03">03PM - 04PM</option>
+                    <option value="04">04PM - 05PM</option>
+                </select>
+            </span>
+            <br>
+            <button type="button" class="add">추가</button>
+            <br>
+            <button type="button" class="close">닫기</button>
         </div>
     </div>
+<script src="main.js"></script>
 </body>
 </html>
