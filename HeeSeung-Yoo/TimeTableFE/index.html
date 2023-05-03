@@ -90,7 +90,8 @@
     <div class="pop-add">
         <div class="pop">
             <h2>시간표 추가</h2>
-            <span>
+            <section class="span-wrap">
+                <span class="item-left">
                 <b>요일</b>
                 <select name="week" id="selectweek">
                     <option value="mon">월</option>
@@ -112,10 +113,21 @@
                     <option value="04">04PM - 05PM</option>
                 </select>
             </span>
-            <br>
-            <button type="button" class="add">추가</button>
-            <br>
-            <button type="button" class="close">닫기</button>
+            <span class="item-center">
+                <b>과목</b>
+                <input type="text" name="subject" id="subject">
+                <br>
+                <b>교수</b>
+                <input type="text" name="professor" id="professor">
+                <br>
+                <input type="color" value="#314090">
+                <br>
+                <button type="button" class="add">일정추가</button>
+                <br>
+                <button type="button" class="close">닫기</button>
+            </span>
+            </section>
+            
         </div>
     </div>
 <script src="main.js"></script>

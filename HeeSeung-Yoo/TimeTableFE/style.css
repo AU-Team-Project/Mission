@@ -42,7 +42,7 @@ th, td {
     background-color: rgb(92, 167, 121);
 }
 .pop {
-    display: none;
+    display: block;
     background-color: rgb(25, 100, 54);
     width: 300px;
     height: 300px;
@@ -58,19 +58,25 @@ th, td {
 .pop > h2 {
     text-align: center;
 }
-.pop > span {
+.span-wrap {
+    
+}
+.item-left {
+    width: 70%;
     display: inline-block;
     text-align: left;
 }
-.pop > span > b, select {
-    margin-top: 7px;
+.item-center {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
 }
 .add {
     background-color: black;
     color: white;
-    margin-top: 20px;
-    width: 50px;
+    width: 100px;
     height: 25px;
+    margin: auto;
 }
 .add:hover {
     background-color:rgb(35, 35, 35);
@@ -81,7 +87,7 @@ th, td {
 .close {
     background-color: black;
     color: white;
-    margin-top: 50px;
+    margin-top: 30px;
     width: 150px;
     height: 45px;
 }
