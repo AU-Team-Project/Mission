@@ -1,34 +1,30 @@
 <!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+  <head>
     <title>Calculator</title>
-</head>
-<link rel="stylesheet" href="style.css">
-<script src="main.js"></script>
-<body>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
     <div class="calculator">
-        <input type="text" class="display" value="" readonly >
-        <div class="buttons">
-            <button onclick="input(7)">7</button>
-            <button onclick="input(8)">8</button>
-            <button onclick="input(9)">9</button>
-            <button onclick="input('/')">/</button>
-            <button onclick="input(4)">4</button>
-            <button onclick="input(5)">5</button>
-            <button onclick="input(6)">6</button>
-            <button onclick="input('*')">*</button>
-            <button onclick="input(1)">1</button>
-            <button onclick="input(2)">2</button>
-            <button onclick="input(3)">3</button>
-            <button onclick="input('-')">-</button>
-            <button onclick="clearDisplay()">C</button>
-            <button onclick="input(0)">0</button>
-            <button onclick="input('.')">.</button>
-            <button onclick="input('+')">+</button>
-        </div>
-        <button class="equals" onclick="calculate()">=</button>
+      <input type="text" class="display" readonly>
+      <button class="num">7</button>
+      <button class="num">8</button>
+      <button class="num">9</button>
+      <button class="operator">/</button>
+      <button class="num">4</button>
+      <button class="num">5</button>
+      <button class="num">6</button>
+      <button class="operator">*</button>
+      <button class="num">1</button>
+      <button class="num">2</button>
+      <button class="num">3</button>
+      <button class="operator">-</button>
+      <button class="clear">C</button>
+      <button class="num">0</button>
+      <button class="operator">+</button>
+      <button class="operator">=</button>
+      <button class="backspace">←</button>
     </div>
-</body>
+    <script src="main.js"></script>
+  </body>
 </html>
