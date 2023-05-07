@@ -20,28 +20,35 @@ const Fri = document.querySelector('.fri').className;
 const selectTime = document.querySelector('#selecttime')
 const selectWeek = document.querySelector('#selectweek')
 
-
 const Subject = document.querySelector('#subject');
 const Professor = document.querySelector('#professor');
-const SubjectValue = Subject.value;
-const ProfessorValue = Professor.value;
+
 
 Add.addEventListener("click", add);
+
+
+const week = Array.from(selectWeek.options);
+const weekArray = week.map(option => option.value);
+const time = Array.from(selectTime.options);
+const timeArray = time.map(option => option.value);
 
 const selectWeekValue = selectWeek.options[selectWeek.selectedIndex].value;
 const selectTimeValue = selectTime.options[selectTime.selectedIndex].value;
 
 const table = document.querySelector('#timetable');
 const trs = Array.from(table.querySelectorAll('tr'));
-const tableList = trs.map(tr => Array.from(tr.querySelectorAll('td, th')));
+const tableArray = trs.map(tr => Array.from(tr.querySelectorAll('td, th')));
 Add.addEventListener("click", add);
 function add() {
-    tableList.forEach(tableData => {
-        const isWeek = tableData.includes(selectWeekValue);
-        const isTime = tableData.includes(selectTimeValue);
-        
-    });
+    // const selectColorValue = document.querySelector('#selectcolor').value;
+    
+    // const SubjectValue = Subject.value;
+    // const ProfessorValue = Professor.value;
+    // alert(selectColorValue + selectWeekValue + selectTimeValue + SubjectValue + ProfessorValue);
+    console.log(tableArray);
 }
+
+
 // 0: [th.empty, th.week, th.week, th.week, th.week, th.week]
 // 1: [th.hour, td.mon, td.tue, td.wed, td.thu, td.fri]
 // 2: [th.hour, td.mon, td.tue, td.wed, td.thu, td.fri]
