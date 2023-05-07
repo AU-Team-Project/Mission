@@ -1,0 +1,93 @@
+/* 전체 페이지를 border-box 로 지정 */
+body {
+    box-sizing: border-box;
+    background-color: #257932;
+  }
+  /* 컨테이너의 너비를 100%로 설정 */
+  .container {
+    width: 100%;
+  }
+  /* 컨텐츠의 마진과 패딩을 설정 */
+  .contents {
+    margin: 1rem;
+    padding: 5rem;
+  }
+  /* 영화 목록을 그리드로 배치 */
+  .movie-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-gap: 20px;
+    justify-content: center;
+    align-content: center;
+  }
+ /* 영화 목록의 디자인 */
+  .movie-content {
+    border: 3px solid #333333;
+    border-radius: 0.32rem;
+    background-color: rgb(7, 83, 11);
+ }
+ .movie-content > p {
+  text-align: center;
+  color: rgb(171, 200, 180);
+  
+ }
+  /* 장바구니의 너비와 높이, 여백, 테두리를 설정 */
+  .cart {
+    width: 100%;
+    height: 22rem;
+    margin-top: 2rem;
+    border: 1px solid #333333;
+    display: flex;
+    background-color: rgb(171, 200, 180);
+  }
+  /* 장바구니 아이템의 패딩과 테두리를 설정 */
+  .cart-item {
+    padding: 1rem;
+    border: 1px solid #333333;
+    border-radius: 0.32rem;
+    height: 20rem;
+    width: 150px;
+    margin: auto;
+    background-color: rgb(7, 83, 11);
+  }
+  .cart-item > p {
+    color: rgb(171, 200, 180);
+  }
+  .count {
+    color: rgb(171, 200, 180);
+  }
+  .amount {
+    color: rgb(171, 200, 180);
+  }
+  /* 제목을 가운데 정렬 */
+  .title {
+    text-align: center;
+    color: rgb(171, 200, 180);
+  }
+  /* 아이템을 선택할 때 마우스 커서 스타일을 변경하고, 배경 색상과 테두리를 설정 */
+  .add-cart {
+    width: 100%;
+    height: 2.5rem;
+    cursor: pointer;
+    border-radius: 0.3279rem;
+    background-color: #333333;
+    color: rgb(171, 200, 180);
+  }
+  /* 아이템의 span 요소에 글자 크기와 두께를 설정 */
+  .add-cart > span {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .plus {
+    background-color: #333333;
+    color: rgb(171, 200, 180);
+  }
+  .minus {
+    background-color: #333333;
+    color: rgb(171, 200, 180);
+  }
+  .delete {
+    background-color: #333333;
+    color: rgb(171, 200, 180);
+  }
