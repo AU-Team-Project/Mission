@@ -1,0 +1,68 @@
+/* 위 코드에서는 display와 buttons를 그리드 컨테이너로 사용하고, 
+각각의 자식 요소를 그리드 아이템으로 배치합니다. 
+display는 첫 번째 행에 배치하고, buttons는 두 번째 행에 배치합니다. 
+buttons는 justify-items 속성을 사용하여 아이템들을 가운데 정렬하고, 
+button과 equals는 justify-self 속성을 사용하여 가운데 정렬합니다. 
+이렇게 함으로써, 계산기 버튼들이 가운데 정렬되며, 
+전체적으로 균일하고 일관된 UI/UX를 제공할 수 있습니다 */
+
+.calculator {
+    width: 300px;
+    background-color: #f5f5f5;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    font-size: 1.2rem;
+  }
+  
+  .display {
+    grid-row: 1 / 2;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    padding: 10px;
+    text-align: right;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .buttons {
+    grid-row: 2 / 3;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    justify-items: center;
+    padding: 10px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 3px;
+    background-color: #4eb063;
+    color: white;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    justify-self: center;
+  }
+  
+  button:hover {
+    background-color: #3e8e41;
+  }
+  
+  .equals {
+    grid-column: 1 / -1;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4eb063;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer
+  }
