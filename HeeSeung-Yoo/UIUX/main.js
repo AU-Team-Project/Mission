@@ -126,3 +126,4 @@ function init() {
   getMoviesData();
 }
 init();
+console.log (getMoviesData);
